@@ -4,14 +4,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 2</title>
-    <link rel="stylesheet" href="../css/style.css">
+    <title>Lab 2 - Multivariate Visualization</title>
+    <link rel="stylesheet" href="../css/style.css?v=3">
+    <link rel="stylesheet" href="tooltip.css">
 </head>
 
-<body>
-    <h1>Lab 2</h1>
-    <p>Lab 2 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+<body class="lab2-page">
+    <header>
+        <h1>STATS 401</h1>
+        <p>Data Acquisition and Visualization</p>
+    </header>
+
+    <nav class="lab-nav" aria-label="Lab navigation">
+        <a href="../lab1/index.html">Lab 1</a>
+        <a href="../lab2/index.html" aria-current="page">Lab 2</a>
+        <a href="../lab3/index.html">Lab 3</a>
+        <a href="../lab4/index.html">Lab 4</a>
+        <a href="../lab5/index.html">Lab 5</a>
+        <a href="../lab6/index.html">Lab 6</a>
+        <a href="../lab7/index.html">Lab 7</a>
+        <a href="../lab8/index.html">Lab 8</a>
+        <a href="../lab9/index.html">Lab 9</a>
+        <a href="../lab10/index.html">Lab 10</a>
+    </nav>
+
+    <main>
+        <h2>Lab 2: Multivariate Visualization with D3</h2>
+
+        <section class="lab-section">
+            <h3>City Multivariate Scatterplot</h3>
+            <p class="chart-description">
+                Population is shown on the x-axis, temperature on the y-axis,
+                development level by circle size, and region by color.
+                Hover over a point to see the city information.
+            </p>
+
+            <div id="city-chart"></div>
+
+            <div class="design-justification">
+                <h3>Design Justification</h3>
+                <p>
+                    Population is mapped to the x-axis and average temperature
+                    is mapped to the y-axis. I chose position for these two
+                    numeric variables because it makes the cities easy to
+                    compare. Development level is shown by circle size: Low
+                    cities use small circles, Medium cities use medium circles,
+                    and High cities use large circles. Region is shown with
+                    color because it is a category without a natural order.
+                    Each point represents one city, and hovering over a point
+                    displays the city name and all four values. I hope viewers
+                    can compare population and temperature, notice the
+                    development level of each city, and see whether cities from
+                    the same region appear in similar parts of the chart. The
+                    legends explain the region colors and development sizes.
+                </p>
+            </div>
+        </section>
+
+        <section class="lab-section">
+            <h3>Student Multivariate Scatterplot</h3>
+            <p class="chart-description">
+                This practice chart represents study hours, exam score, major,
+                and year level. Hover over a point to see the student details.
+            </p>
+
+            <div id="chart"></div>
+        </section>
+
+        <div id="tooltip" class="tooltip"></div>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab2.js"></script>
 </body>
 
 </html>

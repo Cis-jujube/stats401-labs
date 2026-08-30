@@ -17,7 +17,8 @@ p {
     line-height: 1.6;
 }
 
-#chart {
+#chart,
+#city-chart {
     margin-top: 30px;
     overflow-x: auto;
 }
@@ -40,12 +41,14 @@ p {
 }
 
 .lab-nav a:hover,
-.lab-nav a:focus-visible {
+.lab-nav a:focus-visible,
+.lab-nav a[aria-current="page"] {
     background: #333;
     color: white;
 }
 
-#chart svg {
+#chart svg,
+#city-chart svg {
     display: block;
 }
 
@@ -62,4 +65,29 @@ p {
 
 #chart-status {
     min-height: 1.6em;
+}
+
+.lab-section {
+    margin: 35px 0 55px;
+}
+
+.chart-description {
+    color: #555;
+}
+
+.design-justification {
+    margin-top: 35px;
+    padding-top: 20px;
+    border-top: 1px solid #ddd;
+}
+
+.student-point,
+.city-point {
+    cursor: pointer;
+}
+
+.student-point:hover,
+.city-point:hover {
+    stroke: #333;
+    stroke-width: 2px;
 }
