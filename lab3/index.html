@@ -4,14 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 3</title>
+    <title>Lab 3 - Web Data Acquisition</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab3.css">
 </head>
 
 <body>
-    <h1>Lab 3</h1>
-    <p>Lab 3 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+    <main>
+        <h1>Lab 3: Web Data Acquisition</h1>
+        <p><a href="../index.html">Back to home</a></p>
+
+        <h2>Book Dataset</h2>
+        <p>
+            This dataset contains books from Books to Scrape. Each row includes
+            a book ID, title, price in British pounds, rating from 1 to 5,
+            and availability. This is a fictional practice bookstore, so the
+            prices and ratings are sample data, not current retail information.
+        </p>
+        <ul>
+            <li>Source: <a href="https://books.toscrape.com/">Books to Scrape</a></li>
+            <li>Method: HTML scraping with Python, requests, and BeautifulSoup</li>
+            <li>Records collected: <span id="record-count">Loading...</span></li>
+        </ul>
+        <p>
+            The script collects 50 pages and waits one second before each request.
+            It uses a timeout and stops with an error if a page cannot be collected.
+            The source is listed as a scraping practice site on
+            <a href="https://toscrape.com/">ToScrape</a>.
+            No private data is collected, and no login or technical restrictions are bypassed.
+        </p>
+        <p>
+            <a href="../data/lab3_data.csv" download>Download CSV</a> |
+            <a href="scrape_example.py">Python script</a>
+        </p>
+
+        <h2>Book Table</h2>
+        <p>
+            Click a column heading to sort in ascending order. Click it again for descending order.
+            On small screens, scroll the table sideways.
+        </p>
+        <p id="table-status" role="status">Loading the dataset...</p>
+        <div class="table-wrapper">
+            <table id="data-table">
+                <caption>Books to Scrape dataset</caption>
+                <thead></thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <noscript><p>Please enable JavaScript to load and sort the table.</p></noscript>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab3.js"></script>
 </body>
 
 </html>

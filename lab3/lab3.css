@@ -1,0 +1,55 @@
+.table-wrapper {
+    overflow-x: auto;
+}
+
+#data-table {
+    width: 100%;
+    min-width: 620px;
+    border-collapse: collapse;
+}
+
+#data-table caption {
+    text-align: left;
+    margin-bottom: 10px;
+}
+
+#data-table th,
+#data-table td {
+    border: 1px solid #ccc;
+    padding: 10px;
+    text-align: left;
+    vertical-align: top;
+}
+
+#data-table th {
+    background: #eee;
+}
+
+#data-table tbody tr:nth-child(even) {
+    background: #f7f7f7;
+}
+
+#data-table button {
+    width: 100%;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #222;
+    font: inherit;
+    font-weight: bold;
+    text-align: left;
+    cursor: pointer;
+}
+
+#data-table button:focus-visible {
+    outline: 2px solid #2459a6;
+    outline-offset: 4px;
+}
+
+#data-table th[aria-sort="ascending"] button::after {
+    content: " ↑";
+}
+
+#data-table th[aria-sort="descending"] button::after {
+    content: " ↓";
+}
