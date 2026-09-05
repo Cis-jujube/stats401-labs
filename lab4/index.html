@@ -4,14 +4,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 4</title>
+    <title>Lab 4 - Cleaning Web Data for Visualization</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab4.css">
 </head>
 
 <body>
-    <h1>Lab 4</h1>
-    <p>Lab 4 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+    <main>
+        <h1>Lab 4: Cleaning Web Data for Visualization</h1>
+        <p><a href="../index.html">Back to home</a></p>
+
+        <h2>How does sentiment differ across tweet topics?</h2>
+        <p>
+            This chart uses the validation split of
+            <a href="https://huggingface.co/datasets/zeroshot/twitter-financial-news-topic">Twitter Financial News Topic</a>.
+            Sentiment was estimated with
+            <a href="https://huggingface.co/cardiffnlp/twitter-roberta-base-sentiment-latest">CardiffNLP's RoBERTa model</a>.
+        </p>
+        <div class="legend" aria-label="Sentiment colors">
+            <span style="--color: #b85c5c">Negative</span>
+            <span style="--color: #b7c1ca">Neutral</span>
+            <span style="--color: #4b8668">Positive</span>
+        </div>
+        <p id="chart-status" role="status">Loading cleaned tweets...</p>
+        <div id="sentiment-chart" tabindex="0" role="region" aria-label="Sentiment chart, scroll horizontally on small screens"></div>
+        <p>
+            The number on the right is the number of tweets in each topic (n).
+            Hover over a bar segment for its count and percentage.
+            On a small screen, scroll the chart sideways.
+        </p>
+        <noscript><p>Please enable JavaScript to load the chart and count table.</p></noscript>
+
+        <h2>Short Analysis</h2>
+        <div id="analysis">
+            <p>
+                I used the 4,117 tweets in the validation split of zeroshot's Twitter Financial News Topic
+                dataset. It contains tweet text and 20 topic categories. I checked for missing text,
+                duplicates, and invalid topic codes; none were found. I decoded HTML entities, removed
+                extra whitespace, and converted topic codes to readable names. All 4,117 tweets were retained.
+            </p>
+            <p>
+                Sentiment was calculated with cardiffnlp/twitter-roberta-base-sentiment-latest.
+                I normalized URLs and mentions but kept punctuation, capitalization, and negation.
+                The highest probability determines the sentiment label. The numeric score is the
+                positive probability minus the negative probability. These are model estimates,
+                not ground-truth labels. Each horizontal bar shows the percentages of negative,
+                neutral, and positive tweets within one topic; the number beside it shows the sample size.
+            </p>
+            <p>
+                Neutral tweets make up 73.7% of the dataset. Stock Commentary has a larger positive
+                share than Macro: 32.0% compared with 6.0%. Macro also has a higher negative share:
+                22.9% compared with 7.0%. These patterns describe this dataset only. Topic sizes differ,
+                some groups are small, and the model can misunderstand financial language.
+            </p>
+        </div>
+
+        <details>
+            <summary>View counts and percentages as a table</summary>
+            <div class="table-wrapper">
+                <table id="counts-table">
+                    <caption>Estimated sentiment within each topic</caption>
+                    <thead>
+                        <tr>
+                            <th scope="col">Topic</th>
+                            <th scope="col">Tweets</th>
+                            <th scope="col">Negative</th>
+                            <th scope="col">Neutral</th>
+                            <th scope="col">Positive</th>
+                        </tr>
+                    </thead>
+                    <tbody></tbody>
+                </table>
+            </div>
+        </details>
+
+        <h2>Data and Code</h2>
+        <p>
+            <a href="../data/lab4_raw_tweets.csv">Raw tweets</a> |
+            <a href="../data/lab4_clean_tweets.csv">Cleaned tweets</a> |
+            <a href="clean_tweets.py">Python script</a> |
+            <a href="https://github.com/Cis-jujube/stats401-labs/blob/main/lab4/README.md">Cleaning notes and run instructions</a>
+        </p>
+        <p>
+            Dataset by zeroshot, released under the MIT license.
+            The original topic labels are supplied by the dataset; the sentiment labels are calculated for this lab.
+        </p>
+
+        <h2>LLM Usage Disclosure</h2>
+        <p>
+            OpenAI Codex helped select the dataset, write and run the Python and D3 code,
+            draft the analysis, and check the results.
+        </p>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="lab4.js"></script>
 </body>
 
 </html>

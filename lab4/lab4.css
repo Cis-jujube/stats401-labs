@@ -1,0 +1,63 @@
+#sentiment-chart {
+    overflow-x: auto;
+    margin: 20px 0;
+}
+
+#sentiment-chart svg {
+    display: block;
+    font-family: Arial, sans-serif;
+    font-size: 13px;
+}
+
+#sentiment-chart .tick text {
+    font-size: 12px;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend span::before {
+    content: "";
+    display: inline-block;
+    width: 13px;
+    height: 13px;
+    margin-right: 6px;
+    background: var(--color);
+}
+
+.table-wrapper {
+    overflow-x: auto;
+}
+
+table {
+    border-collapse: collapse;
+    margin-top: 15px;
+}
+
+th, td {
+    border: 1px solid #ccc;
+    padding: 7px 10px;
+    text-align: right;
+}
+
+th:first-child, td:first-child {
+    text-align: left;
+}
+
+summary {
+    cursor: pointer;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}

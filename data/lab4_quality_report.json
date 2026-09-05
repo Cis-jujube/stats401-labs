@@ -1,0 +1,48 @@
+{
+  "source_url": "https://huggingface.co/datasets/zeroshot/twitter-financial-news-topic/resolve/acbc8af2a35ccf0916124efcbe9e6cf25f191012/topic_valid.csv",
+  "source_revision": "acbc8af2a35ccf0916124efcbe9e6cf25f191012",
+  "raw_sha256": "67396d6cd4a21c3755de783f20fb5842f12ae8edb9367eed5d2644dd85ca9243",
+  "raw_rows": 4117,
+  "raw_missing_values": {
+    "text": 0,
+    "label": 0
+  },
+  "raw_types": {
+    "text": "str",
+    "label": "int64"
+  },
+  "exact_duplicate_rows": 0,
+  "html_decoded_rows": 113,
+  "whitespace_changed_rows": 3768,
+  "text_changed_rows": 3770,
+  "blank_text_rows": 0,
+  "invalid_topic_rows": 0,
+  "duplicate_clean_text_rows": 0,
+  "clean_rows": 4117,
+  "removed_rows": 0,
+  "topic_count": 20,
+  "sentiment_counts": {
+    "Neutral": 3035,
+    "Positive": 604,
+    "Negative": 478
+  },
+  "dtm_shape": [
+    4117,
+    4342
+  ],
+  "tfidf_shape": [
+    4117,
+    4342
+  ],
+  "model": "cardiffnlp/twitter-roberta-base-sentiment-latest",
+  "model_revision": "3216a57f2a0d9c45a2e6c20157c20c49fb4bf9c7",
+  "device": "mps",
+  "versions": {
+    "pandas": "3.0.5",
+    "torch": "2.14.0",
+    "transformers": "5.16.1",
+    "nltk": "3.10.3",
+    "scikit-learn": "1.9.0"
+  },
+  "clean_sha256": "a50a582872cdaa19552d59fbd8d985ab06f5cd276f504245b4396545c16fbb73"
+}

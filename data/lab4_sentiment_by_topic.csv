@@ -1,0 +1,57 @@
+topic_id,topic,sentiment,count,topic_total,percentage
+0,Analyst Update,Negative,10,73,13.698630136986301
+0,Analyst Update,Neutral,45,73,61.64383561643836
+0,Analyst Update,Positive,18,73,24.65753424657534
+1,Fed | Central Banks,Negative,18,214,8.411214953271028
+1,Fed | Central Banks,Neutral,191,214,89.25233644859813
+1,Fed | Central Banks,Positive,5,214,2.336448598130841
+2,Company | Product News,Negative,34,852,3.9906103286384975
+2,Company | Product News,Neutral,683,852,80.16431924882629
+2,Company | Product News,Positive,135,852,15.845070422535212
+3,Treasuries | Corporate Debt,Negative,16,77,20.77922077922078
+3,Treasuries | Corporate Debt,Neutral,56,77,72.72727272727273
+3,Treasuries | Corporate Debt,Positive,5,77,6.493506493506493
+4,Dividend,Neutral,93,97,95.87628865979381
+4,Dividend,Positive,4,97,4.123711340206185
+5,Earnings,Negative,1,242,0.4132231404958678
+5,Earnings,Neutral,225,242,92.97520661157024
+5,Earnings,Positive,16,242,6.6115702479338845
+6,Energy | Oil,Negative,24,146,16.43835616438356
+6,Energy | Oil,Neutral,112,146,76.71232876712328
+6,Energy | Oil,Positive,10,146,6.8493150684931505
+7,Financials,Negative,26,160,16.25
+7,Financials,Neutral,78,160,48.75
+7,Financials,Positive,56,160,35.0
+8,Currencies,Negative,3,32,9.375
+8,Currencies,Neutral,28,32,87.5
+8,Currencies,Positive,1,32,3.125
+9,General News | Opinion,Negative,82,336,24.404761904761905
+9,General News | Opinion,Neutral,214,336,63.69047619047619
+9,General News | Opinion,Positive,40,336,11.904761904761903
+10,Gold | Metals | Materials,Negative,3,13,23.076923076923077
+10,Gold | Metals | Materials,Neutral,10,13,76.92307692307693
+11,IPO,Neutral,13,14,92.85714285714286
+11,IPO,Positive,1,14,7.142857142857142
+12,Legal | Regulation,Negative,18,119,15.126050420168067
+12,Legal | Regulation,Neutral,101,119,84.87394957983193
+13,M&A | Investments,Negative,3,116,2.586206896551724
+13,M&A | Investments,Neutral,108,116,93.10344827586206
+13,M&A | Investments,Positive,5,116,4.310344827586207
+14,Macro,Negative,95,415,22.89156626506024
+14,Macro,Neutral,295,415,71.08433734939759
+14,Macro,Positive,25,415,6.024096385542169
+15,Markets,Negative,25,125,20.0
+15,Markets,Neutral,77,125,61.6
+15,Markets,Positive,23,125,18.4
+16,Politics,Negative,40,249,16.06425702811245
+16,Politics,Neutral,195,249,78.3132530120482
+16,Politics,Positive,14,249,5.622489959839357
+17,Personnel Change,Negative,3,112,2.6785714285714284
+17,Personnel Change,Neutral,104,112,92.85714285714286
+17,Personnel Change,Positive,5,112,4.464285714285714
+18,Stock Commentary,Negative,37,528,7.007575757575757
+18,Stock Commentary,Neutral,322,528,60.984848484848484
+18,Stock Commentary,Positive,169,528,32.00757575757576
+19,Stock Movement,Negative,40,197,20.304568527918782
+19,Stock Movement,Neutral,85,197,43.14720812182741
+19,Stock Movement,Positive,72,197,36.54822335025381
