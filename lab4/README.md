@@ -125,7 +125,9 @@ these packages into the indicated folders under your user's `nltk_data`:
 Verify downloaded files against the `sha256_checksum` entries in the
 [official package index](https://raw.githubusercontent.com/nltk/nltk_data/gh-pages/index.xml).
 
-Viewing the published page needs no Python. D3 loads the saved cleaned CSV and
+Viewing the published page needs no Python. D3 7.9.0 is included in
+`vendor/` with its license, so the chart does not depend on an external CDN.
+A stalled download displays a reload message instead of loading indefinitely. D3 loads the saved cleaned CSV and
 calculates counts within each topic. Each stacked bar totals 100%; the right
 column shows the number of tweets. Topic names are sorted alphabetically.
 All topics are included, including small groups. A count table is available

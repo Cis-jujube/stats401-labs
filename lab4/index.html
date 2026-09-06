@@ -92,7 +92,16 @@
 
     </main>
 
-    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script>
+        // Show a useful message even if a script download stalls.
+        setTimeout(() => {
+            const status = document.getElementById("chart-status");
+            if (status.textContent === "Loading cleaned tweets...") {
+                status.textContent = "Loading took too long. Please reload the page to try again.";
+            }
+        }, 25000);
+    </script>
+    <script src="vendor/d3.v7.min.js"></script>
     <script src="lab4.js"></script>
 </body>
 

@@ -3,7 +3,9 @@ if (typeof d3 === "undefined") {
     document.getElementById("chart-status").textContent =
         "D3 could not load. Check your internet connection and reload the page.";
 } else {
-    d3.csv("../data/lab4_clean_tweets.csv", d => ({
+    const controller = new AbortController();
+    const timeout = setTimeout(() => controller.abort(), 20000);
+    d3.csv("../data/lab4_clean_tweets.csv", {signal: controller.signal}, d => ({
         ...d,
         record_id: +d.record_id,
         topic_id: +d.topic_id,
@@ -118,7 +120,8 @@ if (typeof d3 === "undefined") {
             d3.select("#sentiment-chart").selectAll("*").remove();
             d3.select("#chart-status").text(
                 "The chart could not load. Check that data/lab4_clean_tweets.csv is available. " +
-                error.message
+                (error.name === "AbortError" ? "The download timed out. Please reload to try again." : error.message)
             );
-        });
+        })
+        .finally(() => clearTimeout(timeout));
 }
