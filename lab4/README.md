@@ -127,8 +127,11 @@ Verify downloaded files against the `sha256_checksum` entries in the
 
 Viewing the published page needs no Python. D3 7.9.0 is included in
 `vendor/` with its license, so the chart does not depend on an external CDN.
-A stalled download displays a reload message instead of loading indefinitely. D3 loads the saved cleaned CSV and
-calculates counts within each topic. Each stacked bar totals 100%; the right
+A stalled download displays a reload message instead of loading indefinitely.
+D3 loads the small topic-sentiment summary CSV produced by Python from the
+cleaned tweets. This avoids downloading the full 2.3 MB tweet-level CSV just to
+draw the chart. The complete raw and cleaned datasets remain linked on the page.
+Each stacked bar totals 100%; the right
 column shows the number of tweets. Topic names are sorted alphabetically.
 All topics are included, including small groups. A count table is available
 for exact values and for readers who cannot use hover tooltips.

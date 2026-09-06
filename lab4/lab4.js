@@ -1,37 +1,45 @@
-// Load the tweet-level CSV, then count each sentiment within each topic.
+// Load the small topic summary created by the Python cleaning script.
 if (typeof d3 === "undefined") {
     document.getElementById("chart-status").textContent =
         "D3 could not load. Check your internet connection and reload the page.";
 } else {
     const controller = new AbortController();
     const timeout = setTimeout(() => controller.abort(), 20000);
-    d3.csv("../data/lab4_clean_tweets.csv", {signal: controller.signal}, d => ({
+    d3.csv("../data/lab4_sentiment_by_topic.csv", {signal: controller.signal}, d => ({
         ...d,
-        record_id: +d.record_id,
-        topic_id: +d.topic_id,
-        sentiment_score: +d.sentiment_score
+        count: +d.count,
+        topic_total: +d.topic_total
     }))
         .then(data => {
             const sentiments = ["Negative", "Neutral", "Positive"];
-            if (data.length < 1000 || data.some(d => !d.topic ||
-                !sentiments.includes(d.sentiment) || !Number.isFinite(d.sentiment_score))) {
-                throw new Error("The cleaned tweet data is incomplete.");
+            if (!data.length || data.some(d => !d.topic ||
+                !sentiments.includes(d.sentiment) || !Number.isInteger(d.count) || d.count < 0)) {
+                throw new Error("The sentiment summary is incomplete.");
             }
 
             const topics = Array.from(new Set(data.map(d => d.topic))).sort();
             const summary = topics.map(topic => {
-                const tweets = data.filter(d => d.topic === topic);
+                const rows = data.filter(d => d.topic === topic);
+                if (new Set(rows.map(d => d.sentiment)).size !== rows.length) {
+                    throw new Error("A topic has duplicate sentiment counts.");
+                }
+                const total = rows.reduce((sum, d) => sum + d.count, 0);
+                if (total <= 0 || rows.some(d => d.topic_total !== total)) {
+                    throw new Error("A topic total does not match its counts.");
+                }
+                // The summary omits combinations with zero tweets.
                 return {
                     topic: topic,
-                    total: tweets.length,
-                    Negative: tweets.filter(d => d.sentiment === "Negative").length,
-                    Neutral: tweets.filter(d => d.sentiment === "Neutral").length,
-                    Positive: tweets.filter(d => d.sentiment === "Positive").length
+                    total: total,
+                    Negative: rows.find(d => d.sentiment === "Negative")?.count ?? 0,
+                    Neutral: rows.find(d => d.sentiment === "Neutral")?.count ?? 0,
+                    Positive: rows.find(d => d.sentiment === "Positive")?.count ?? 0
                 };
             });
-
+            const tweetCount = summary.reduce((sum, d) => sum + d.total, 0);
+            if (tweetCount < 1000) throw new Error("The summary contains too few tweets.");
             d3.select("#chart-status").text(
-                data.length.toLocaleString("en-US") + " cleaned tweets across " +
+                tweetCount.toLocaleString("en-US") + " cleaned tweets across " +
                 topics.length + " topics. Each row adds up to 100%."
             );
 
@@ -119,7 +127,7 @@ if (typeof d3 === "undefined") {
         .catch(error => {
             d3.select("#sentiment-chart").selectAll("*").remove();
             d3.select("#chart-status").text(
-                "The chart could not load. Check that data/lab4_clean_tweets.csv is available. " +
+                "The chart could not load. Check that data/lab4_sentiment_by_topic.csv is available. " +
                 (error.name === "AbortError" ? "The download timed out. Please reload to try again." : error.message)
             );
         })
