@@ -1,0 +1,104 @@
+main {
+    min-width: 0;
+}
+
+.diagram {
+    max-width: 100%;
+    overflow-x: auto;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+}
+
+.diagram svg {
+    display: block;
+    font-family: Arial, sans-serif;
+}
+
+.controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 8px;
+}
+
+select,
+button {
+    max-width: 100%;
+    padding: 6px 8px;
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+h3 {
+    margin: 18px 0 8px;
+    font-size: 16px;
+}
+
+.legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px 20px;
+    font-size: 14px;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.legend-item svg {
+    display: block;
+    flex-shrink: 0;
+}
+
+#chart .nodes circle {
+    cursor: grab;
+}
+
+#chart .nodes circle:active {
+    cursor: grabbing;
+}
+
+#chart .network-labels text {
+    fill: #111;
+    stroke: white;
+    stroke-width: 3px;
+    paint-order: stroke;
+    font-size: 11px;
+    pointer-events: none;
+}
+
+#tooltip {
+    position: fixed;
+    z-index: 10;
+    max-width: min(300px, calc(100vw - 24px));
+    padding: 8px 10px;
+    border: 1px solid #777;
+    background: white;
+    color: #111;
+    font-size: 13px;
+    line-height: 1.5;
+    white-space: pre-line;
+    pointer-events: none;
+}
+
+:focus-visible {
+    outline: 2px solid #265a91;
+    outline-offset: 3px;
+}
+
+@media (max-width: 600px) {
+    body {
+        margin: 24px auto;
+        padding: 0 16px;
+    }
+
+    h1 {
+        font-size: 26px;
+    }
+}

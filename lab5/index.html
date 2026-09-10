@@ -4,14 +4,124 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 5</title>
+    <title>Lab 5 - Interactive Network Visualization</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab5.css">
 </head>
 
 <body>
-    <h1>Lab 5</h1>
-    <p>Lab 5 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+    <main>
+        <h1>Lab 5: Interactive Network Visualization</h1>
+        <p><a href="../index.html">Back to home</a></p>
+
+        <h2>Dataset</h2>
+        <p>
+            This lab uses a synthetic city transit network with 50 stations and 50 routes.
+            The stations are the nodes, and the direct routes between stations are the links.
+            Each route is undirected, so it can be read in either direction.
+            The short label s1 means Station 1, s2 means Station 2, and so on.
+        </p>
+        <p>
+            Source: <a href="https://github.com/hiilab/stats-401/blob/main/Lab5.md">STATS 401 Lab 5</a>.
+            Data: <a href="../data/lab5_assignment_stations.csv">Stations CSV</a> |
+            <a href="../data/lab5_assignment_routes.csv">Routes CSV</a>.
+        </p>
+
+        <h2>Node-Link Diagram</h2>
+        <p>
+            Drag a station to move it. Hover over a station to see its details and highlight its
+            direct neighbors. Hover over a route to see its travel time and route type.
+            You can also select a station below. On a small screen, scroll the diagrams sideways.
+        </p>
+        <div class="controls">
+            <label for="station-select">Select a station:</label>
+            <select id="station-select">
+                <option value="">All stations</option>
+            </select>
+            <button id="reset-selection" type="button">Clear selection</button>
+        </div>
+        <p id="selection-details" role="status">Select a station to see its details and direct neighbors.</p>
+        <p id="chart-status" role="status">Loading network data...</p>
+        <div id="chart" class="diagram" tabindex="0" role="region"
+            aria-label="Transit node-link diagram, scroll horizontally on small screens"></div>
+
+        <div class="legends" aria-label="Node-link diagram legends">
+            <h3>Station district: circle color</h3>
+            <div id="district-legend" class="legend"></div>
+            <h3>Daily passengers: circle size</h3>
+            <div id="size-legend" class="legend"></div>
+            <h3>Station type: circle border</h3>
+            <div id="station-type-legend" class="legend"></div>
+            <h3>Route type: line color</h3>
+            <div id="route-legend" class="legend"></div>
+            <h3>Travel time: line width</h3>
+            <div id="time-legend" class="legend"></div>
+        </div>
+
+        <h2>Node-Link Design Justification</h2>
+        <p id="node-design">
+            District colors show membership; circle area represents passenger volume. Thin, thick,
+            and dashed borders distinguish Local, Transfer, and Terminal stations. Route colors
+            distinguish services. Thicker lines make longer journeys noticeable.
+            Dragging separates overlaps; highlighting reveals neighbors; tooltips give exact values.
+            Positions are not geographic.
+        </p>
+
+        <h2>Adjacency Matrix</h2>
+        <p>
+            Both axes list all 50 stations, sorted by district and then station number.
+            A colored cell shows a direct route between its row and column stations.
+            A light gray cell means there is no direct route.
+            Hover over a cell to see the station pair, travel time, and route type.
+        </p>
+        <div id="matrix" class="diagram" tabindex="0" role="region"
+            aria-label="Transit adjacency matrix, scroll horizontally on small screens"></div>
+        <h3>Travel time: cell opacity</h3>
+        <p>Route colors match the line-color legend above. Darker cells mean longer travel times.</p>
+        <div id="matrix-legend" class="legend" aria-label="Adjacency matrix color legend"></div>
+
+        <h2>Matrix Design Justification</h2>
+        <p id="matrix-design">
+            Rows and columns use the same district order, then station number, so district blocks
+            reveal connections. Label colors identify districts. Cell hue represents route type;
+            darker cells mean longer travel times. Gray means no direct route. The undirected matrix
+            is symmetric.
+        </p>
+
+        <h2>Network Questions</h2>
+        <ol id="findings">
+            <li><p><strong>Which stations appear central?</strong>
+                Partially, using node-link highlighting: Stations 7, 18, and 29 each have three
+                neighbors, tied with others for the maximum. No unique degree hub stands out;
+                screen position alone is insufficient.
+            </p></li>
+            <li><p><strong>Which districts are strongly connected?</strong>
+                Well, using matrix blocks: East–South has the most direct routes (11), followed
+                by Central–North and East–West (nine each). Count one symmetric block per pair.
+            </p></li>
+            <li><p><strong>Where are Transfer and Terminal stations?</strong>
+                Well, using node-link borders and highlighting: Transfer 50 has one neighbor;
+                Terminal 7 has three, while Terminal 49 is isolated. These labels do not guarantee endpoints.
+            </p></li>
+            <li><p><strong>Which stations have high passenger volume?</strong>
+                Well, using node-link sizes and tooltips: Stations 50, 49, and 48 are largest,
+                with 9,850, 9,677, and 9,504 passengers.
+            </p></li>
+            <li><p><strong>Where are the longest direct journeys?</strong>
+                Well, using thick node-link lines and tooltips: 7–31 takes 16 minutes,
+                18–34 takes 15, and 29–50 takes 14; all are Express.
+            </p></li>
+            <li><p><strong>Are route types concentrated?</strong>
+                Partially, using matrix colors: services mix across district blocks. Both
+                within-Central connections are Shuttle, but no large service-specific cluster is evident.
+            </p></li>
+        </ol>
+        <noscript><p>Please enable JavaScript to view the network and adjacency matrix.</p></noscript>
+    </main>
+
+    <div id="tooltip" role="tooltip" hidden></div>
+    <script src="../lab4/vendor/d3.v7.min.js"></script>
+    <script src="lab5.js"></script>
 </body>
 
 </html>
