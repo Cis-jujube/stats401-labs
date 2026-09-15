@@ -1,0 +1,97 @@
+.diagram,
+.table-container {
+    max-width: 100%;
+    overflow-x: auto;
+    border: 1px solid #aaa;
+}
+
+.diagram svg {
+    display: block;
+    background: white;
+}
+
+#legend {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.swatch {
+    width: 18px;
+    height: 18px;
+    border: 1px solid #555;
+}
+
+.group-label {
+    font-size: 11px;
+    pointer-events: none;
+}
+
+.continent-label {
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.country text {
+    font-size: 12px;
+    pointer-events: none;
+}
+
+.country:hover rect,
+.country:focus rect {
+    stroke: #111;
+    stroke-width: 2px;
+}
+
+:focus-visible {
+    outline: 2px solid #222;
+    outline-offset: 2px;
+}
+
+#tooltip {
+    position: fixed;
+    z-index: 10;
+    max-width: min(300px, calc(100vw - 40px));
+    padding: 8px 10px;
+    background: white;
+    color: #111;
+    border: 1px solid #555;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    pointer-events: none;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+caption {
+    text-align: left;
+    padding: 10px;
+}
+
+th,
+td {
+    padding: 8px;
+    border: 1px solid #ccc;
+    text-align: left;
+}
+
+th {
+    background: #eee;
+}
+
+td:nth-child(4) {
+    text-align: right;
+    white-space: nowrap;
+}

@@ -1,0 +1,153 @@
+{
+  "name": "World",
+  "children": [
+    {
+      "name": "North America",
+      "children": [
+        {
+          "name": "USA",
+          "children": [
+            {
+              "name": "California",
+              "children": [
+                {
+                  "name": "Los Angeles",
+                  "value": 3900.0
+                },
+                {
+                  "name": "San Francisco",
+                  "value": 870.0
+                }
+              ]
+            },
+            {
+              "name": "New York",
+              "children": [
+                {
+                  "name": "New York City",
+                  "value": 8400.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "Canada",
+          "children": [
+            {
+              "name": "Ontario",
+              "children": [
+                {
+                  "name": "Toronto",
+                  "value": 2900.0
+                }
+              ]
+            },
+            {
+              "name": "British Columbia",
+              "children": [
+                {
+                  "name": "Vancouver",
+                  "value": 675.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Europe",
+      "children": [
+        {
+          "name": "Germany",
+          "children": [
+            {
+              "name": "Bavaria",
+              "children": [
+                {
+                  "name": "Munich",
+                  "value": 1500.0
+                }
+              ]
+            },
+            {
+              "name": "Berlin",
+              "children": [
+                {
+                  "name": "Berlin",
+                  "value": 3700.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "France",
+          "children": [
+            {
+              "name": "Île-de-France",
+              "children": [
+                {
+                  "name": "Paris",
+                  "value": 2100.0
+                }
+              ]
+            },
+            {
+              "name": "Auvergne-Rhône-Alpes",
+              "children": [
+                {
+                  "name": "Lyon",
+                  "value": 520.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Asia",
+      "children": [
+        {
+          "name": "Japan",
+          "children": [
+            {
+              "name": "Kanto",
+              "children": [
+                {
+                  "name": "Tokyo",
+                  "value": 14000.0
+                }
+              ]
+            },
+            {
+              "name": "Kansai",
+              "children": [
+                {
+                  "name": "Osaka",
+                  "value": 2750.0
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "name": "South Korea",
+          "children": [
+            {
+              "name": "Seoul",
+              "children": [
+                {
+                  "name": "Seoul",
+                  "value": 9500.0
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

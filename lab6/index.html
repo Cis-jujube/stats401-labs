@@ -4,14 +4,84 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 6</title>
+    <title>Lab 6 - GDP Treemaps</title>
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab6.css">
 </head>
 
 <body>
-    <h1>Lab 6</h1>
-    <p>Lab 6 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+    <main>
+        <h1>Lab 6: GDP Treemaps</h1>
+        <p><a href="../index.html">Back to home</a></p>
+
+        <h2>Dataset</h2>
+        <p>
+            These two treemaps show the same synthetic GDP dataset. The hierarchy is
+            World → Continent → Area → Country. GDP is measured in billions of US dollars.
+            These are practice data, not current economic statistics.
+        </p>
+        <p>
+            Source: <a href="https://github.com/hiilab/stats-401/blob/main/Lab6.md">STATS 401 Lab 6</a>.
+            Files: <a href="../data/lab6_assignment_gdp.csv">CSV</a> |
+            <a href="../data/lab6_assignment_gdp.json">Hierarchical JSON</a> |
+            <a href="convert_hierarchy.py">Python conversion</a>.
+        </p>
+        <p id="chart-status" role="status">Loading GDP data...</p>
+
+        <h2>How to Read the Charts</h2>
+        <p>
+            Larger country rectangles represent higher GDP. Bold group headings name continents;
+            smaller group headings name areas. Hover over a country, tap it, or focus it with Tab
+            to see its full name, hierarchy, GDP, and status. Small labels are shortened or hidden to fit;
+            full names are available in the tooltips and table.
+            On small screens, scroll each chart sideways.
+        </p>
+        <h3>GDP status: rectangle color</h3>
+        <div id="legend" aria-label="GDP status legend"></div>
+
+        <h2>1. Squarify Treemap</h2>
+        <p>Squarify tries to make rectangles closer to squares.</p>
+        <div id="squarify" class="diagram" tabindex="0" role="region"
+            aria-label="Squarify GDP treemap, horizontally scrollable"></div>
+
+        <h2>2. Binary Treemap</h2>
+        <p>Binary repeatedly divides each group into two parts based on their total GDP.</p>
+        <div id="binary" class="diagram" tabindex="0" role="region"
+            aria-label="Binary GDP treemap, horizontally scrollable"></div>
+
+        <h2>Design Description</h2>
+        <p id="design-description">
+            I use rectangle area to show GDP because it helps compare each country's contribution
+            to the total. Blue means Increase, gray means Unchanged, and orange means Decrease.
+            The same colors are used in both charts, so status can be compared without learning
+            a second legend. Continent headings and area headings show the grouping, while country
+            labels identify the smallest rectangles. Tooltips provide exact GDP values and the
+            full hierarchy when a label is too short to read.
+            Squarify aims for rectangles closer to squares, which often makes country labels easier
+            to place. Binary splits a group into two smaller groups repeatedly. This changes the
+            positions and shapes, even though the data are identical. Both layouts can give small
+            countries little room, so I include a table of full names and values. I keep the chart
+            sizes and sorting the same for comparison. Borders and heading spaces make the hierarchy
+            clearer, but they also use some of the available area.
+        </p>
+
+        <h2>Country Details</h2>
+        <p>This table also gives the full names of groups and countries with shortened chart labels.</p>
+        <div class="table-container" tabindex="0" role="region" aria-label="Country details, horizontally scrollable">
+            <table>
+                <caption>GDP data by continent, area, and country</caption>
+                <thead><tr>
+                    <th scope="col">Continent</th><th scope="col">Area</th><th scope="col">Country</th>
+                    <th scope="col">GDP (billion USD)</th><th scope="col">Status</th>
+                </tr></thead>
+                <tbody id="country-rows"></tbody>
+            </table>
+        </div>
+        <noscript><p>Please enable JavaScript to view the treemaps, or download the CSV above.</p></noscript>
+    </main>
+    <div id="tooltip" role="tooltip" hidden></div>
+    <script src="../lab4/vendor/d3.v7.min.js"></script>
+    <script src="lab6.js"></script>
 </body>
 
 </html>
