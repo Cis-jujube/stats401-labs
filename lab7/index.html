@@ -1,17 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lab 7</title>
+    <title>Lab 7 - Temporal Commercial Network</title>
+    <link rel="icon" href="../lab6/icon.svg" type="image/svg+xml">
     <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="lab7.css">
 </head>
-
 <body>
-    <h1>Lab 7</h1>
-    <p>Lab 7 will be added here.</p>
-    <a href="../index.html">Back to home</a>
+<main>
+    <p><a href="../index.html">← All labs</a> / STATS 401</p>
+    <h1>60 Days of Commercial Connections</h1>
+    <p>Lab 7 · Animated temporal network</p>
+    <p>Explore how relationships among 12 companies change from January 1 to March 1, 2026.
+        These are fabricated practice data, not real companies or transactions.
+        <a href="https://github.com/hiilab/stats-401/blob/main/Lab7.md">Assignment</a> ·
+        <a href="../data/lab7_assignment_companies.csv">Companies CSV</a> ·
+        <a href="../data/lab7_assignment_transactions_60days.csv">Transactions CSV</a></p>
+    <p id="status" role="status">Loading transaction data…</p>
+    <section aria-labelledby="network-heading">
+        <h2 id="network-heading">Daily network</h2>
+        <fieldset id="controls" disabled>
+            <legend>Time controls</legend>
+            <div class="controls">
+                <button id="play" type="button">Play</button>
+                <button id="pause" type="button">Pause</button>
+                <button id="reset" type="button">Reset</button>
+                <output id="current-day" for="time-slider"></output>
+            </div>
+            <label for="time-slider">Select a day (1–60)</label>
+            <input id="time-slider" type="range" min="1" max="60" step="1" value="1">
+        </fieldset>
+        <div id="summary" class="summary" aria-live="off"></div>
+        <div id="network" class="diagram" tabindex="0" role="region" aria-label="Daily commercial network, horizontally scrollable"></div>
+        <p>Hover, tap, or tab to a company or relationship to inspect it. All links are undirected.
+            On small screens, scroll the charts and table sideways. Inactive companies remain visible as small nodes. New links fade in; disappearing links fade out.
+            Playback advances one day every 900 milliseconds and stops at day 60.</p>
+        <h3>How to read the network</h3>
+        <p>Node color shows <strong>sector</strong>; node area increases with <strong>daily incident transaction value</strong>.
+            Link color shows <strong>transaction type</strong>; thicker links mean <strong>larger USD amounts</strong>.
+            Size and width scales stay fixed across all 60 days. Company positions are anchored to preserve the mental map.</p>
+        <div class="legends"><div><h4>Company sector</h4><div id="sector-legend"></div></div>
+            <div><h4>Transaction type</h4><div id="type-legend"></div></div></div>
+        <div id="size-legend"></div>
+    </section>
+    <section aria-labelledby="overview-heading">
+        <h2 id="overview-heading">Connectivity across all 60 days</h2>
+        <p>Active relationships per day. The vertical marker follows the selected day; use the time slider to inspect any point.</p>
+        <div id="overview" class="diagram" tabindex="0" role="region" aria-label="60 day active relationship line chart, horizontally scrollable"></div>
+    </section>
+    <section>
+        <h2>Temporal network questions</h2>
+        <p>These observations use daily snapshots, not cumulative links. Periods below contain 20 days each.
+            Connectivity is measured by active undirected links and connected components (including isolated companies).
+            Commercial activity is the sum of the amounts on a company's incident links, not a formal centrality score.</p>
+        <div id="answers"></div>
+    </section>
+    <section>
+        <h2>Selected-day transactions</h2>
+        <div class="diagram" tabindex="0" role="region" aria-label="Transaction table, horizontally scrollable">
+            <table><caption id="table-caption">Daily transactions</caption><thead><tr><th scope="col">Company A</th><th scope="col">Company B</th><th scope="col">Type</th><th scope="col">Amount (USD)</th><th scope="col">Count</th></tr></thead><tbody id="transactions"></tbody></table>
+        </div>
+    </section>
+    <p class="disclosure">LLM Usage Disclosure: I used OpenAI Codex to help implement, test, and document this visualization and analyze the provided data.</p>
+    <noscript>Enable JavaScript to view the interactive network, or download the CSV files above.</noscript>
+</main>
+<div id="tooltip" role="tooltip" hidden></div>
+<script src="../lab4/vendor/d3.v7.min.js"></script>
+<script src="lab7.js"></script>
 </body>
-
 </html>
